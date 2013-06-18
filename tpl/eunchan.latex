@@ -1,0 +1,292 @@
+\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(sides)$$sides$,$endif$$if(papersize)$$papersize$$endif$]{$documentclass$}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+$if(euro)$
+  \usepackage{eurosym}
+$endif$
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+$if(mainfont)$
+    \setmainfont{$mainfont$}
+$endif$
+$if(sansfont)$
+    \setsansfont{$sansfont$}
+$endif$
+$if(monofont)$
+    \setmonofont{$monofont$}
+$endif$
+$if(mathfont)$
+    \setmathfont(Digits,Latin,Greek){$mathfont$}
+$endif$
+\fi
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+$if(geometry)$
+\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
+$endif$
+$if(natbib)$
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+$endif$
+$if(biblatex)$
+\usepackage{biblatex}
+$if(biblio-files)$
+\bibliography{$biblio-files$}
+$endif$
+$endif$
+$if(listings)$
+\usepackage{listings}
+$endif$
+$if(lhs)$
+\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+$endif$
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+$if(verbatim-in-note)$
+\usepackage{fancyvrb}
+$endif$
+$if(tables)$
+\usepackage{longtable}
+$endif$
+$if(graphics)$
+\usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\ScaleIfNeeded{%
+  \ifdim\Gin@nat@width>0.8\textwidth
+    0.8\textwidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+{%
+ \catcode`\@=11\relax%
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+}%
+$endif$
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={$author-meta$},
+            pdftitle={$title-meta$},
+            colorlinks=true,
+            urlcolor=$if(urlcolor)$$urlcolor$$else$blue$endif$,
+            linkcolor=$if(linkcolor)$$linkcolor$$else$magenta$endif$,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+$if(strikeout)$
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
+$endif$
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+$if(numbersections)$
+\setcounter{secnumdepth}{5}
+$else$
+\setcounter{secnumdepth}{0}
+$endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allows verbatim text in footnotes
+$endif$
+$if(lang)$
+\ifxetex
+  \usepackage{polyglossia}
+  \setmainlanguage{$mainlang$}
+\else
+  \usepackage[$lang$]{babel}
+\fi
+$endif$
+
+\usepackage{fancyvrb}
+\fvset{xleftmargin=1.7cm}
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+%% KOTEX.TEX
+
+\usepackage{kotex}
+
+\usepackage{geometry}
+\geometry{a4paper,includeheadfoot,margin=1.5cm,bottom=2cm}
+\usepackage[explicit]{titlesec,xcolor}
+\definecolor{midnightblue}{rgb}{0.05,0.05,0.4}
+\titleformat{\chapter}%
+            {\color{midnightblue}\LARGE\bfseries}%
+            {Chapter \thechapter: #1}
+            {20pt}
+            {}
+\titlespacing*{\chapter}{0pt}{-40pt}{30pt}
+\titleformat{\section}%
+            {\Large\bfseries}% format
+            {\makebox[1.7cm][l]{\thesection}#1}
+            {15pt}% horizontal sep
+            {}% before
+\titleformat{\subsection}%
+            {\color{midnightblue}\large\bfseries}% format
+            {\makebox[1.7cm][l]{\thesubsection}#1}
+            {10pt}%horizontal sep
+            {}% before
+\titleformat{\subsubsection}%
+            {\normalsize\bfseries}% format
+            {\makebox[1.7cm][l]{\thesubsubsection}#1}
+            {8pt}%horizontal sep
+            {}% before
+
+\setmainfont[BoldFont=나눔고딕 Bold]{나눔고딕}
+\setmainhangulfont[BoldFont=나눔고딕 Bold]{나눔고딕}
+%\setmainfont[BoldFont=나눔명조 Bold]{나눔명조}
+%\setmainhangulfont[BoldFont=나눔명조 Bold]{나눔명조}
+\setmonofont{나눔고딕코딩}
+\setmonohangulfont{나눔고딕코딩}
+
+\usepackage{tocloft}
+
+\setlength\cftparskip{-5pt}
+\setlength\cftbeforechapskip{10pt}
+% These redefinitions were missing
+\renewcommand{\cfttoctitlefont}{\color{midnightblue}\LARGE\bfseries}
+\renewcommand{\cftaftertoctitle}{\hfill}
+\setlength{\cftbeforetoctitleskip}{20pt}
+\setlength{\cftaftertoctitleskip}{10pt}
+
+\renewcommand{\contentsname}{Table of Contents}
+%\renewcommand{\cftchapname}{Chapter \chaptername~}
+%% TODO: Add "Chapter" text in TOC list
+
+%% END:KOTEX.TEX
+
+
+\usepackage{etoolbox,fancyhdr,xcolor}
+\definecolor{midnightblue}{rgb}{0.05,0.05,0.4}
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyhead[L]{\fontsize{8}{10} \selectfont $title$ \newline $date$}
+    \fancyhead[R]{\fontsize{8}{10} \selectfont \nouppercase {\leftmark%
+                                  \\\rightmark}}
+    \fancyhead[C]{\rule[-4ex]{0pt}{4ex}}
+    \fancyfoot[L]{\fontsize{8}{10} \selectfont All right reserved.}
+    \fancyfoot[C]{\fontsize{8}{10} \selectfont - \thepage\ -}
+    \fancyfoot[R]{\fontsize{8}{10} \selectfont $author$,\ $team$}
+    }
+\pagestyle{plain}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+\newcommand{\headrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
+\newcommand{\footrulecolor}[1]{\patchcmd{\headrule}{\hrule}{\color{#1}\hrule}{}{}}
+\headrulecolor{midnightblue}
+\footrulecolor{midnightblue}
+
+% Indenting
+\usepackage{enumitem}
+\leftskip 1.7cm
+\setlist[description]{labelindent=1.7cm,leftmargin=2cm,style=nextline}
+\setlist[enumerate,1]{labelindent=1.7cm,labelwidth=*,leftmargin=*}
+\setlist[itemize,1]{labelindent=1.7cm,labelwidth=*,leftmargin=*}
+
+%% TITLE
+%{\Large \includegraphics[width=3cm]{../tpl/logo.png}}\\[0.167\textheight] %Author
+\renewcommand{\maketitle}{%
+\begin{titlepage}
+\thispagestyle{empty}
+\raggedleft
+\vspace*{\baselineskip}
+
+{\Large Author}\\[0.167\textheight]
+
+{\LARGE\bfseries Revision $revision$}\\[\baselineskip]
+
+{\textcolor{midnightblue}{\Huge $if(title)$$title$$endif$}}\\[\baselineskip]
+
+{\Large \textit{$date$}}\par
+
+\vfill
+
+{\large $author$\\$team$}\par
+
+\vspace*{3\baselineskip}
+\pagebreak
+\end{titlepage}
+}
+
+
+$if(title)$
+\title{$title$}
+$endif$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+\date{$date$}
+
+
+\begin{document}
+$if(title)$
+\maketitle
+$endif$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$if(toc)$
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{$toc-depth$}
+\tableofcontents
+}
+$endif$
+$body$
+
+$if(natbib)$
+$if(biblio-files)$
+$if(biblio-title)$
+$if(book-class)$
+\renewcommand\bibname{$biblio-title$}
+$else$
+\renewcommand\refname{$biblio-title$}
+$endif$
+$endif$
+\bibliography{$biblio-files$}
+
+$endif$
+$endif$
+$if(biblatex)$
+\printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
+
+$endif$
+$for(include-after)$
+$include-after$
+
+$endfor$
+\end{document}

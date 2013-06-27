@@ -148,7 +148,6 @@ $endfor$
             {Chapter \thechapter: #1}
             {20pt}
             {}
-\titlespacing*{\chapter}{0pt}{-40pt}{30pt}
 \titleformat{\section}%
             {\Large\bfseries}% format
             {\makebox[1.7cm][l]{\thesection}#1}
@@ -164,6 +163,8 @@ $endfor$
             {\makebox[1.7cm][l]{\thesubsubsection}#1}
             {8pt}%horizontal sep
             {}% before
+\titlespacing*{\chapter}{0pt}{-40pt}{30pt}
+\titlespacing*{\subsection}{1.7cm}{*}{*}
 
 \setmainfont[BoldFont=나눔고딕 Bold]{나눔고딕}
 \setmainhangulfont[BoldFont=나눔고딕 Bold]{나눔고딕}

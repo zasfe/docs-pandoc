@@ -140,7 +140,8 @@ $endfor$
 \usepackage{kotex}
 
 \usepackage{geometry}
-\geometry{a4paper,includeheadfoot,margin=1.5cm,bottom=2cm}
+%\geometry{a4paper,includeheadfoot,margin=1.5cm,bottom=2cm}
+\geometry{$if(papaersize)$$papersize$,$endif$includeheadfoot,margin=1.5cm,bottom=2cm}
 \usepackage[explicit]{titlesec,xcolor}
 \definecolor{midnightblue}{rgb}{0.05,0.05,0.4}
 \titleformat{\chapter}%

@@ -1,1 +1,7 @@
-은찬아, 이거 프라이빗으로 안되어있네.
+Pandoc Template for documentation
+=================================
+
+This repository is made for supporting any documentation works.
+It uses pandoc and latex to generate document. Its syntax is markdown.
+
+

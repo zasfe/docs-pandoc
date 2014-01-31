@@ -10,7 +10,8 @@ set title="Document Title"
 set author="Document Author"
 set team="Publisher Team"
 set date="July 2013"
-set currdate=%date:~0,4%%date:~5,7%%date:~8,9%
+for /F "usebackq tokens=1,2 delims==" %%i in (`wmic os get LocalDateTime /VALUE 2^>NUL`) do if '.%%i.'=='.LocalDateTime.' set ldt=%%j
+set currdate=%ldt:~0,4%-%ldt:~4,2%-%ldt:~6,2%
 set revision="1"
 
 set datetarget=%target%_%currdate%
